@@ -223,28 +223,25 @@ body { background: var(--paper); color: var(--ink); }
 .mmenu a:not(.btn) { border-bottom-color: var(--line); font-weight: 700; }
 
 /* ==================== HERO ==================== */
+/* Первый экран: текст, цена, кнопки и фото стенда помещаются в окно 1366×768 и 390×844 */
 .hero3 {
   position: relative;
-  padding-top: clamp(1.75rem, 4vw, 3.25rem);
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(0.75rem, 2vw, 1.75rem);
+  padding-bottom: clamp(2rem, 4vw, 3.25rem);
   background:
     radial-gradient(1100px 520px at 88% -10%, rgba(255, 90, 20, 0.10), transparent 62%),
     linear-gradient(180deg, #fbfaf8 0%, var(--paper) 100%);
 }
 .hero3__grid {
   display: grid;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  align-items: end;
-  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  gap: clamp(1rem, 2.4vw, 2.5rem);
 }
-@media (min-width: 1000px) {
-  .hero3__grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
-}
+.hero3__copy { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: clamp(0.8rem, 1.6vw, 1.1rem);
   padding: 0.45rem 0.9rem 0.45rem 0.75rem;
   border-radius: 999px;
   background: #fff;
@@ -254,90 +251,101 @@ body { background: var(--paper); color: var(--ink); }
   font-size: 0.875rem;
   font-weight: 700;
 }
-.eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 20, 0.16); }
+.eyebrow::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255, 90, 20, 0.16); }
 .hero3 h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.35rem, 1.2rem + 4.3vw, 4.6rem);
-  line-height: 1.02;
+  font-size: clamp(2rem, 0.75rem + 3.3vw, 3.5625rem);
+  line-height: 1.03;
   letter-spacing: -0.04em;
-  max-width: 15ch;
   text-wrap: balance;
 }
 .hero3 h1 .hl { color: var(--accent-ink); }
+.hero3__from {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.25rem;
+  margin-top: clamp(0.9rem, 1.8vw, 1.4rem);
+}
+.hero3__from-v {
+  position: relative;
+  display: grid; gap: 0.1rem;
+  padding: 0.7rem 1.15rem 0.8rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+}
+.hero3__from-v::before { content: ''; position: absolute; left: 1.15rem; top: -1px; width: 44px; height: 4px; border-radius: 0 0 4px 4px; background: var(--accent); }
+.hero3__from-v span { font-size: 0.8125rem; font-weight: 700; color: var(--ink-2); }
+.hero3__from-v b { font-family: var(--font-display); font-size: clamp(1.6rem, 1.1rem + 1.3vw, 2.35rem); line-height: 1.05; letter-spacing: -0.035em; color: var(--ink); white-space: nowrap; }
+.hero3__from-d { max-width: 15em; font-size: 0.9375rem; line-height: 1.45; color: var(--ink-2); font-weight: 600; }
 .hero3__lead {
-  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  margin-top: clamp(0.85rem, 1.6vw, 1.2rem);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
   line-height: 1.55;
   color: var(--ink-2);
-  max-width: 34em;
+  max-width: 31em;
 }
-.hero3__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.4rem; }
+.hero3__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: clamp(1rem, 2vw, 1.5rem); }
 .hero3__cta .btn { min-height: 54px; padding-inline: 1.5rem; }
 
 .hero3__media {
   position: relative;
   margin: 0;
+  min-width: 0;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background: #d9d6cf;
+  background: #2a2f36;
   box-shadow: var(--sh-2);
-  aspect-ratio: 1680 / 760;
+  aspect-ratio: 16 / 9;
 }
-.hero3__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.hero3__media picture { display: block; width: 100%; height: 100%; }
+.hero3__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
 .hero3__media::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(10, 12, 14, 0.42) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 62%, rgba(10, 12, 14, 0.38) 100%);
   pointer-events: none;
 }
 .hero3__cap {
   position: absolute; z-index: 2;
-  left: clamp(0.9rem, 2vw, 1.5rem);
-  bottom: clamp(0.9rem, 2vw, 1.5rem);
+  left: clamp(0.75rem, 1.6vw, 1.25rem);
+  bottom: clamp(0.75rem, 1.6vw, 1.25rem);
   display: grid;
   gap: 0.1rem;
-  padding: 0.65rem 0.95rem;
+  padding: 0.6rem 0.9rem;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: var(--ink);
-  max-width: calc(100% - 2rem);
+  max-width: calc(100% - 1.5rem);
 }
-.hero3__cap b { font-family: var(--font-display); font-size: 1rem; }
-.hero3__cap span { font-size: 0.8125rem; color: var(--ink-2); }
-.hero3__price {
-  position: absolute; z-index: 2;
-  right: clamp(0.9rem, 2vw, 1.5rem);
-  bottom: clamp(0.9rem, 2vw, 1.5rem);
-  display: grid;
-  gap: 0.15rem;
-  padding: 1rem 1.25rem 1.05rem;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 16px 36px rgba(10, 12, 14, 0.22);
-  min-width: 15rem;
+.hero3__cap b { font-family: var(--font-display); font-size: 1rem; line-height: 1.2; }
+.hero3__cap span { font-size: 0.8125rem; line-height: 1.35; color: var(--ink-2); }
+
+/* десктоп: текст слева, фото справа, обе колонки одной высоты */
+@media (min-width: 1000px) {
+  .hero3__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr); align-items: stretch; }
+  .hero3__copy { justify-content: center; }
+  .hero3__media { aspect-ratio: auto; min-height: clamp(440px, calc(100svh - 330px), 640px); }
+  .hero3__media img { object-position: 14% 50%; }
 }
-.hero3__price span { font-size: 0.8125rem; font-weight: 700; color: var(--ink-2); }
-.hero3__price b {
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  color: var(--ink);
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .hero3__grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 1.5rem; }
+  .hero3 h1 { font-size: 2.65rem; }
+  .hero3__lead { font-size: 1rem; }
+  .hero3__from-d { font-size: 0.875rem; }
+  .hero3__cta .btn { padding-inline: 1.15rem; }
 }
-.hero3__price small { font-size: 0.8125rem; color: var(--ink-2); line-height: 1.35; max-width: 18em; }
-.hero3__price::before {
-  content: '';
-  position: absolute; left: 1.25rem; top: -1px;
-  width: 44px; height: 4px; border-radius: 0 0 4px 4px;
-  background: var(--accent);
+/* планшет и телефон: фото первым */
+@media (max-width: 999px) {
+  .hero3__media { order: -1; }
 }
 
 .hero3__paths {
   display: grid;
   gap: 0.75rem;
-  margin-top: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2.2vw, 1.75rem);
 }
 @media (min-width: 860px) { .hero3__paths { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .hero3__paths li {
@@ -363,12 +371,22 @@ body { background: var(--paper); color: var(--ink); }
 .hero3__ico .ico { width: 22px; height: 22px; }
 
 @media (max-width: 640px) {
-  .hero3__media { aspect-ratio: 4 / 3.6; border-radius: 22px; }
+  .hero3 .eyebrow { display: none; }
+  .hero3 h1 { font-size: clamp(1.9rem, 0.9rem + 4.6vw, 2.35rem); }
+  .hero3__media { aspect-ratio: 16 / 10; border-radius: 22px; }
   .hero3__media img { object-position: 46% 50%; }
-  .hero3__cap { top: 0.75rem; bottom: auto; left: 0.75rem; padding: 0.5rem 0.75rem; }
+  .hero3__cap { left: 0.6rem; bottom: 0.6rem; padding: 0.4rem 0.7rem; border-radius: 12px; display: flex; gap: 0.4rem; align-items: baseline; }
+  .hero3__cap b { font-size: 0.875rem; }
   .hero3__cap span { font-size: 0.75rem; }
-  .hero3__price { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; min-width: 0; padding: 0.8rem 1rem; }
-  .hero3__price small { max-width: none; }
+  .hero3__cap .hero3__cap-long { display: none; }
+  .hero3__from { gap: 0.5rem; margin-top: 0.9rem; }
+  .hero3__from-v { flex: 1 1 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.75rem 1rem; }
+  .hero3__from-v b { font-size: 1.75rem; }
+  .hero3__from-d { max-width: none; font-size: 0.875rem; }
+  .hero3__lead { order: 4; margin-top: 1rem; font-size: 1rem; line-height: 1.5; }
+  .hero3 h1 { order: 1; }
+  .hero3__from { order: 2; }
+  .hero3__cta { order: 3; margin-top: 1rem; }
   .hero3__cta .btn { flex: 1 1 100%; }
 }
 
@@ -1183,33 +1201,5 @@ fieldset.cstep > legend.cstep__h { float: left; }
   .venue__st { font-size: 0.75rem; padding: 0.2rem 0.5rem; }
   .venue--more { grid-column: 1 / -1; }
 }
-/* hero: цена под заголовком — видна на первом экране */
-.hero3 h1 { font-size: clamp(2.35rem, 1.2rem + 3.9vw, 4.1rem); max-width: 17ch; }
-.hero3__grid { align-items: end; }
-.hero3__from {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.4rem;
-  margin-top: clamp(1.1rem, 2vw, 1.6rem);
-}
-.hero3__from-v {
-  position: relative;
-  display: grid; gap: 0.1rem;
-  padding: 0.75rem 1.2rem 0.85rem;
-  border-radius: 18px;
-  background: #fff;
-  border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
-}
-.hero3__from-v::before { content: ''; position: absolute; left: 1.2rem; top: -1px; width: 44px; height: 4px; border-radius: 0 0 4px 4px; background: var(--accent); }
-.hero3__from-v span { font-size: 0.8125rem; font-weight: 700; color: var(--ink-2); }
-.hero3__from-v b { font-family: var(--font-display); font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem); line-height: 1.05; letter-spacing: -0.035em; color: var(--ink); white-space: nowrap; }
-.hero3__from-d { max-width: 17em; font-size: 0.9375rem; line-height: 1.45; color: var(--ink-2); font-weight: 600; }
-.hero3__media picture { display: block; width: 100%; height: 100%; }
-@media (max-width: 640px) {
-  .hero3__from { gap: 0.6rem; }
-  .hero3__from-v { flex: 1 1 100%; }
-  .hero3__from-d { max-width: none; font-size: 0.875rem; }
-  .hero3__media { aspect-ratio: 4 / 3.3; }
-}
-
 /* мобильное меню: нижняя панель не просвечивает под меню */
 body.menu-open .mbar { transform: translateY(120%) !important; }
